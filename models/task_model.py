@@ -20,5 +20,10 @@ class Task(TaskCreate):
     intern_id: str
     status: str = "pending"
     feedback: List[Feedback] = []
+    meeting_date: Optional[str] = None
+    meeting_time: Optional[str] = None
     created_at: datetime = datetime.utcnow()
     updated_at: datetime = datetime.utcnow()
+
+
+
