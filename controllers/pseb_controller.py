@@ -4,7 +4,6 @@ from services.pseb_service import (
     assign_task_to_mentor,
     schedule_meeting
 )
-from schemas.task_schema import AssignTaskModel,  ScheduleMeetingSchema
 
 
 def get_users_controller():
@@ -15,11 +14,11 @@ def get_tasks_controller():
     return get_all_tasks()
 
 
-def assign_task_controller(data: AssignTaskModel):
+def assign_task_controller(data):
     assign_task_to_mentor(data.task_id, data.mentor_id)
     return {"message": "Task assigned to mentor"}
 
 
-def schedule_meeting_controller(data: ScheduleMeetingSchema):
-    schedule_meeting(data.User_id, data.date, data.time ,data.Note)
+def schedule_meeting_controller(data):
+    schedule_meeting(data.User_id, data.date, data.time, data.Note)
     return {"message": "Meeting scheduled"}

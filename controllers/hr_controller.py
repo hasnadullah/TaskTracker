@@ -1,14 +1,9 @@
-from config.db import users_collection, tasks_collection
-from bson.objectid import ObjectId
+from repository.hr_repository import get_all_users, get_all_tasks
+
 
 def get_all_users_controller():
-    users = list(users_collection.find({}, {"password": 0})) 
-    for u in users:
-        u["_id"] = str(u["_id"])
-    return users
+    return get_all_users()
+
 
 def get_all_tasks_controller():
-    tasks = list(tasks_collection.find({}))
-    for t in tasks:
-        t["_id"] = str(t["_id"])
-    return tasks
+    return get_all_tasks()
