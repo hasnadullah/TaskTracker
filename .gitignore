@@ -2,6 +2,7 @@
 .env
 .env.*
 
+example.html
 # Node modules
 node_modules/
 
