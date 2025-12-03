@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from models.task_model import TaskCreate, TaskUpdate
+from schemas.task_schema import TaskCreate, TaskUpdate
 from controllers.task_controller import create_task_controller, get_my_tasks_controller, update_task_controller, delete_task_controller
 from auth.jwt_bearer import JWTBearer
 

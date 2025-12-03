@@ -6,6 +6,8 @@ from controllers.pseb_controller import (
     schedule_meeting_controller
 )
 from auth.jwt_bearer import JWTBearer
+from schemas.task_schema import AssignTaskSchema
+from schemas.task_schema import ScheduleMeetingSchema
 
 router = APIRouter(prefix="/pseb", tags=["pseb"])
 
@@ -18,9 +20,9 @@ def get_tasks(payload: dict = Depends(JWTBearer(["pseb"]))):
     return get_tasks_controller()
 
 @router.post("/assign-task")
-def assign_task(data: dict, payload: dict = Depends(JWTBearer(["pseb"]))):
+def assign_task(data: AssignTaskSchema, payload: dict = Depends(JWTBearer(["pseb"]))):
     return assign_task_controller(data)
 
 @router.post("/schedule-meeting")
-def schedule_meeting(data: dict, payload: dict = Depends(JWTBearer(["pseb"]))):
+def schedule_meeting(data: ScheduleMeetingSchema, payload: dict = Depends(JWTBearer(["pseb"]))):
     return schedule_meeting_controller(data)

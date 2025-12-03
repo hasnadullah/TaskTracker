@@ -2,7 +2,7 @@ from config.db import users_collection, tasks_collection
 from bson.objectid import ObjectId
 
 def get_all_users_controller():
-    users = list(users_collection.find({}, {"password": 0}))  # exclude password
+    users = list(users_collection.find({}, {"password": 0})) 
     for u in users:
         u["_id"] = str(u["_id"])
     return users

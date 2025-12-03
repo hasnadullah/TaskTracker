@@ -1,24 +1,47 @@
 
 from pydantic import BaseModel
 from typing import Optional
+from typing import List, Optional
+from datetime import datetime
 
-class TaskBase(BaseModel):
+class AssignTaskSchema(BaseModel):
+    task_id: str
+    mentor_id: str
+
+class ScheduleMeetingSchema(BaseModel):
+    User_id: str
+    date: str
+    time: str
+    Note: str
+
+class Feedback(BaseModel):
+    mentor_id: str
+    comment: str
+    date: datetime = datetime.utcnow()
+
+class TaskCreate(BaseModel):
     title: str
     description: str
-    status: str  
-
-class TaskCreate(TaskBase):
-    pass
 
 class TaskUpdate(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
-    status: Optional[str] = None
+    title: Optional[str]
+    description: Optional[str]
+    status: Optional[str]
 
-class TaskResponse(TaskBase):
-    id: str
-    user_id: str  # intern id (owner)
-    mentor_feedback: Optional[str] = None
+class Task(TaskCreate):
+    intern_id: str
+    status: str = "pending"
+    feedback: List[Feedback] = []
+    meeting_date: Optional[str] = None
+    meeting_time: Optional[str] = None
+    created_at: datetime = datetime.utcnow()
+    updated_at: datetime = datetime.utcnow()
 
-    class Config:
-        orm_mode = True
+class AssignTaskModel(BaseModel):
+    task_id: str
+    mentor_id: str
+
+class ScheduleMeetingModel(BaseModel):
+    task_id: str
+    date: str
+    time: str

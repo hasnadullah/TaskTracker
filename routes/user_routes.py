@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from models.user_model import UserCreate, UserLogin
+from schemas.user_schema import UserCreate, UserLogin
 from controllers.user_controller import signup_controller, login_controller
 from auth.jwt_bearer import JWTBearer
 
