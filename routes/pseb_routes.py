@@ -25,4 +25,4 @@ def assign_task(data: AssignTaskSchema, payload: dict = Depends(JWTBearer(["pseb
 
 @router.post("/schedule-meeting")
 def schedule_meeting(data: ScheduleMeetingSchema, payload: dict = Depends(JWTBearer(["pseb"]))):
-    return schedule_meeting_controller(data)
+    return schedule_meeting_controller(data.dict())

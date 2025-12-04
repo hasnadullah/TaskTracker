@@ -1,9 +1,9 @@
-from repository.hr_repository import get_all_users, get_all_tasks
+from services.hr_service import get_all_users_service, get_all_tasks_service
 
 
 def get_all_users_controller():
-    return get_all_users()
+    return get_all_users_service()
 
 
 def get_all_tasks_controller():
-    return get_all_tasks()
+    return get_all_tasks_service()

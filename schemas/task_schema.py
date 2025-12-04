@@ -17,7 +17,6 @@ class ScheduleMeetingSchema(BaseModel):
 class Feedback(BaseModel):
     mentor_id: str
     comment: str
-    date: datetime = datetime.utcnow()
 
 class TaskCreate(BaseModel):
     title: str

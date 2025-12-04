@@ -1,24 +1,37 @@
+from fastapi import HTTPException
 from services.pseb_service import (
-    get_all_users,
-    get_all_tasks,
-    assign_task_to_mentor,
-    schedule_meeting
+    get_all_users_service,
+    get_all_tasks_service,
+    assign_task_to_mentor_service,
+    schedule_meeting_service
 )
 
 
 def get_users_controller():
-    return get_all_users()
+    try:
+        return get_all_users_service()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 def get_tasks_controller():
-    return get_all_tasks()
+    try:
+        return get_all_tasks_service()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 def assign_task_controller(data):
-    assign_task_to_mentor(data.task_id, data.mentor_id)
-    return {"message": "Task assigned to mentor"}
+    try:
+        assign_task_to_mentor_service(data.task_id, data.mentor_id)
+        return {"message": "Task assigned to mentor"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
-def schedule_meeting_controller(data):
-    schedule_meeting(data.User_id, data.date, data.time, data.Note)
-    return {"message": "Meeting scheduled"}
+def schedule_meeting_controller(data: dict):
+    try:
+        schedule_meeting_service(data)
+        return {"message": "Meeting scheduled"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
